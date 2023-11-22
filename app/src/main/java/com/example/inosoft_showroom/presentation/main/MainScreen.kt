@@ -3,8 +3,13 @@ package com.example.inosoft_showroom.presentation.main
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.R
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,16 +26,23 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.inosoft_showroom.presentation.component.Appbar
 import com.example.inosoft_showroom.presentation.component.DrawerContent
+import com.example.inosoft_showroom.presentation.component.SpaceRegularCard
+import com.example.inosoft_showroom.presentation.component.SpaceWideCard
+import com.example.inosoft_showroom.presentation.util.Screen
+import com.example.inosoft_showroom.ui.theme.Blue
+import com.example.inosoft_showroom.ui.theme.Purple
+import com.example.inosoft_showroom.ui.theme.Red
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(navController: NavController? = null){
+fun MainScreen(navController: NavController   ){
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val scrollState = rememberLazyListState()
@@ -49,38 +61,49 @@ fun MainScreen(navController: NavController? = null){
 
         onDispose {}
     }
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        gesturesEnabled = true,
-        drawerContent = {
-            ModalDrawerSheet {
-              DrawerContent(onDestinationClicked = { route ->
-                    scope.launch {
-                        drawerState.close()
-                    }
-                  navController?.navigate(route)
-                })
-            }
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = {
+            Appbar(title = "UNISOFT", onNavIconPressed = {
+                scope.launch {
+                    drawerState.open()
+                }
+            })
         },
-
-        scrimColor = MaterialTheme.colorScheme.surfaceColorAtElevation(12.dp)
-    ) {
-
-        Scaffold(
-            modifier = Modifier.fillMaxSize(),
-            topBar = {
-                Appbar(onNavIconPressed = {
-                    scope.launch {
-                        drawerState.open()
+    ) { padding ->
+        LazyColumn(contentPadding = padding) {
+            item {
+                Row {
+                    SpaceRegularCard(
+                        modifier = Modifier.weight(1f, fill = true),
+                        title = "Stock",
+                        image = com.example.inosoft_showroom.R.drawable.notes_img,
+                        backgroundColor = Blue
+                    ){
+                        navController.navigate(Screen.StockKendaraanScreen.route)
                     }
-                })
-            },
-        ) { padding ->
-            Column(Modifier.padding(padding).fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-              Text(text = "Hallo Selamat datang")
+                    SpaceRegularCard(
+                        modifier = Modifier.weight(1f, fill = true),
+                        title = "Penjualan",
+                        image = com.example.inosoft_showroom.R.drawable.notes_img,
+                        backgroundColor = Red
+                    ){
+                        navController.navigate(
+                            Screen.PenjualanKendaraanScreen.route
+                        )
+                    }
+                }
             }
+            item {
+                SpaceWideCard(
+                    title = "Laporan Penjualan",
+                    image = com.example.inosoft_showroom.R.drawable.notes_img,
+                    backgroundColor = Purple
+                ){
+                    navController.navigate(Screen.PenjualanKendaraanScreen.route)
+                }
+            }
+            item { Spacer(Modifier.height(60.dp)) }
         }
-
-
     }
 }

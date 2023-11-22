@@ -80,4 +80,14 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.1")
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
     implementation("io.coil-kt:coil-compose:2.0.0-rc01")
+
+    // Add the Koin dependencies
+    implementation ("io.insert-koin:koin-android:3.4.3")
+    testImplementation ("io.insert-koin:koin-test-junit4:3.4.3")
+    implementation ("io.insert-koin:koin-core:3.4.3")
+    implementation ("io.insert-koin:koin-android:3.4.3")
+    testImplementation ("io.insert-koin:koin-test:3.4.3")
+    testImplementation ("io.insert-koin:koin-test-junit4:3.4.3")
+    implementation("io.insert-koin:koin-androidx-compose:3.4.3")
+
 }

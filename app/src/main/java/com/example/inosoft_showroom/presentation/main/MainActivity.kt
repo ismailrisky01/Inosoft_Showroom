@@ -16,11 +16,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.inosoft_showroom.presentation.stock.AddStockScreen
 import com.example.inosoft_showroom.presentation.stock.StockKendaraanScreen
 import com.example.inosoft_showroom.presentation.util.Screen
 import com.example.inosoft_showroom.ui.theme.Inosoft_ShowroomTheme
 import kotlinx.coroutines.runBlocking
-
+import org.koin.android.ext.android.inject
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +61,12 @@ class MainActivity : ComponentActivity() {
                             )
                         }) {
                             StockKendaraanScreen(navController)
+                        }
+
+                        composable(route = Screen.AddStockMotor.route) {
+                            AddStockScreen(navController){
+
+                            }
                         }
                     }
                 }

@@ -4,55 +4,49 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 // Kendaraan class
+@Entity
 open class Kendaraan(
-    val tahunKeluaran: String,
-    open val warna: String,
-    open val harga: Double
+    open val tahunKeluaran: String="",
+    open val warna: String="",
+    open val harga: Double=0.0,
+    open val nama: String="",
+
 )
 
 // Mobil class
+@Entity
 data class Mobil(
-    val tahun: String,
+    override val tahunKeluaran: String,
     override val warna: String,
+    override val nama: String,
     override val harga: Double,
     val mesin: String,
     val kapasitasPenumpang: Int,
     val tipe: String,
-     val id: Int? = null
-) : Kendaraan(tahun, warna, harga)
+    @PrimaryKey val id: Int? = null
+) : Kendaraan(tahunKeluaran, warna, harga,nama)
 
 // Motor class
-class Motor(
-    tahun: String,
-    warna: String,
-    harga: Double,
+@Entity
+data class Motor(
+    override val tahunKeluaran: String,
+    override val warna: String,
+    override val harga: Double,
+    override val nama: String,
     val mesin: String,
     val tipeSuspensi: String,
     val tipeTransmisi: String,
-   val id: Int? = null
-) : Kendaraan(tahun, warna, harga)
+    @PrimaryKey val id: Int? = null
+) : Kendaraan(tahunKeluaran, warna, harga,nama)
 
 // Penjualan class
+@Entity
 class Penjualan(
-    val idPenjualan: Int? = null,
+    @PrimaryKey val idPenjualan: Int? = null,
     val tanggal: String,
-    val totalHarga: Double,
-    val itemPenjualan: List<ItemJual>
+    val idKendaraan:Int,
+    val totalTerjual:Int,
 )
 
 // ItemJual class
-class ItemJual(
-    val idItem: Int? = null,
-    val jumlah: Int,
-    val subtotal: Double,
-    val produk: Produk
-)
-
-// Produk class (digunakan oleh ItemJual)
-class Produk(
-    val idProduk: Int? = null,
-    val nama: String,
-    val harga: Double
-)
-class StockMotor(val listMotor:List<Motor>)
-class StockMobil(val listMobil:List<Mobil>)
+class StockKendaraan(val idKendaraan:Int,val jumlahStock:Int)

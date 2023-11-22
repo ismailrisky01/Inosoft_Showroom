@@ -21,7 +21,7 @@ import com.example.inosoft_showroom.presentation.util.Screen
 @Composable
 fun Appbar(modifier: Modifier = Modifier,title: String="", onNavIconPressed: () -> Unit = { }, page: String = Screen.MainScreen.route) {
     CenterAlignedTopAppBar(
-        title = { },
+        title = { Text(text = title) },
 
         navigationIcon = {
 
