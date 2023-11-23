@@ -89,5 +89,7 @@ dependencies {
     testImplementation ("io.insert-koin:koin-test:3.4.3")
     testImplementation ("io.insert-koin:koin-test-junit4:3.4.3")
     implementation("io.insert-koin:koin-androidx-compose:3.4.3")
+    implementation ("androidx.compose.runtime:runtime-livedata:1.6.0-beta01")
+
 
 }
