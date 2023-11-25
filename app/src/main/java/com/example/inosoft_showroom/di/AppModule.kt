@@ -3,8 +3,14 @@ package com.example.inosoft_showroom.di
 import androidx.room.Room
 import com.example.inosoft_showroom.data.local.RoomDatabase
 import com.example.inosoft_showroom.data.repository.RepositoryImpl
+import com.example.inosoft_showroom.domain.feature.AddStockMobil
 import com.example.inosoft_showroom.domain.feature.AddStockMotor
+import com.example.inosoft_showroom.domain.feature.GetDetailMotor
+import com.example.inosoft_showroom.domain.feature.GetDetalMobil
+import com.example.inosoft_showroom.domain.feature.GetStockMobil
 import com.example.inosoft_showroom.domain.feature.GetStockMotor
+import com.example.inosoft_showroom.domain.feature.UpdateStockMobil
+import com.example.inosoft_showroom.domain.feature.UpdateStockMotor
 import com.example.inosoft_showroom.domain.repository.Repository
 import com.example.inosoft_showroom.domain.usecase.ShowRoomUseCase
 import com.example.inosoft_showroom.presentation.stock.StockViewModel
@@ -25,7 +31,7 @@ val referenceModules = module {
     single {
         get<RoomDatabase>().mobilDao
     }
-    single<Repository> { RepositoryImpl(get(),get()) }
+    single<Repository> { RepositoryImpl(get(), get()) }
 }
 
 val viewModelProject = module {
@@ -34,6 +40,15 @@ val viewModelProject = module {
 }
 val useCaseModules = module {
     single {
-        ShowRoomUseCase(addStockMotor = AddStockMotor(get()), getStockMotor = GetStockMotor(get()))
+        ShowRoomUseCase(
+            addStockMotor = AddStockMotor(get()),
+            getStockMotor = GetStockMotor(get()),
+            getDetailMotor = GetDetailMotor(get()),
+            updateStockMotor = UpdateStockMotor(get()),
+            addStockMobil = AddStockMobil(get()),
+            getStockMobil = GetStockMobil(get()),
+            getDetalMobil = GetDetalMobil(get()),
+            updateStockMobil = UpdateStockMobil(get())
+        )
     }
 }

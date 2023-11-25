@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.flow
 import java.io.IOException
 
 class GetDetailMotor(private val repository: Repository) {
-    suspend operator fun invoke(id:Int): Flow<Resource<List<Motor>>> = flow {
+    suspend operator fun invoke(id:Int): Flow<Resource<Motor>> = flow {
         try {
-            emit(Resource.success(repository.getStockKendaraanMotor()))
+            emit(Resource.success(repository.getDetailKendaraanMotor(id)))
         }catch(e: HttpException) {
             emit(Resource.error(e.localizedMessage ?: "An unexpected error occured",null))
         } catch(e: IOException) {

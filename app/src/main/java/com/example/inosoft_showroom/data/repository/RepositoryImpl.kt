@@ -14,8 +14,18 @@ class RepositoryImpl(private val motorDao: MotorDao,private val mobilDao: MobilD
         myLog("Insert Data Motor")
     }
 
+    override fun updateStockMotor(id: Int,isSold:Boolean) {
+        myLog("Update Data Motor")
+        motorDao.updateStatusJual(id,isSold)
+    }
+
     override fun addStockMobil(mobil: Mobil) {
         mobilDao.insertMobil(mobil)
+    }
+
+    override fun updateStockMobil(id: Int, isSold: Boolean) {
+        mobilDao.updateStatusJual(id,isSold)
+
     }
 
     override fun addPenjualan(penjualan: Penjualan) {
@@ -24,6 +34,15 @@ class RepositoryImpl(private val motorDao: MotorDao,private val mobilDao: MobilD
 
     override fun getStockKendaraanMotor(): List<Motor> {
         return motorDao.getListMotor()
+    }
+
+    override fun getDetailKendaraanMotor(id:Int): Motor {
+        return motorDao.getMotorById(id)
+    }
+
+    override fun getDetailKendaraanMobil(id: Int): Mobil {
+        return mobilDao.getMobilById(id)
+
     }
 
     override fun getStockKendaraanMobil(): List<Mobil> {

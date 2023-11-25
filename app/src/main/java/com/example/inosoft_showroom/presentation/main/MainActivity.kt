@@ -10,28 +10,26 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.inosoft_showroom.presentation.penjualan.PenjualanKendaraanScreen
+import com.example.inosoft_showroom.presentation.penjualan.PenjualanMotorScreen
+import com.example.inosoft_showroom.presentation.penjualan.PenjualanMobilScreen
+import com.example.inosoft_showroom.presentation.stock.AddStockMobil
 import com.example.inosoft_showroom.presentation.stock.AddStockScreen
 import com.example.inosoft_showroom.presentation.stock.DetailStockKendaraan
-import com.example.inosoft_showroom.presentation.stock.StockKendaraanScreen
+import com.example.inosoft_showroom.presentation.stock.DetailStockMobil
+import com.example.inosoft_showroom.presentation.stock.StockMobilScreen
+import com.example.inosoft_showroom.presentation.stock.StockMotorScreen
 import com.example.inosoft_showroom.presentation.util.Constants
 import com.example.inosoft_showroom.presentation.util.Screen
 import com.example.inosoft_showroom.ui.theme.Inosoft_ShowroomTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import kotlinx.coroutines.runBlocking
-import org.koin.android.ext.android.inject
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +59,7 @@ class MainActivity : ComponentActivity() {
                         }) {
                             MainScreen(navController)
                         }
-                        composable(route = Screen.StockKendaraanScreen.route,  enterTransition = {
+                        composable(route = Screen.StockMotorScreen.route,  enterTransition = {
                             slideIntoContainer(
                                 AnimatedContentTransitionScope.SlideDirection.Left,
                                 animationSpec = tween(400)
@@ -72,9 +70,9 @@ class MainActivity : ComponentActivity() {
                                 animationSpec = tween(400)
                             )
                         }) {
-                            StockKendaraanScreen(navController)
+                            StockMotorScreen(navController)
                         }
-                        composable(route = Screen.PenjualanKendaraanScreen.route,  enterTransition = {
+                        composable(route = Screen.StockMobilScreen.route,  enterTransition = {
                             slideIntoContainer(
                                 AnimatedContentTransitionScope.SlideDirection.Left,
                                 animationSpec = tween(400)
@@ -85,7 +83,33 @@ class MainActivity : ComponentActivity() {
                                 animationSpec = tween(400)
                             )
                         }) {
-                            PenjualanKendaraanScreen(navController)
+                            StockMobilScreen(navController)
+                        }
+                        composable(route = Screen.PenjualanMotorScreen.route,  enterTransition = {
+                            slideIntoContainer(
+                                AnimatedContentTransitionScope.SlideDirection.Left,
+                                animationSpec = tween(400)
+                            )
+                        },  exitTransition = {
+                            slideOutOfContainer(
+                                AnimatedContentTransitionScope.SlideDirection.Right ,
+                                animationSpec = tween(400)
+                            )
+                        }) {
+                            PenjualanMotorScreen(navController)
+                        }
+                        composable(route = Screen.PenjualanMobilScreen.route,  enterTransition = {
+                            slideIntoContainer(
+                                AnimatedContentTransitionScope.SlideDirection.Left,
+                                animationSpec = tween(400)
+                            )
+                        },  exitTransition = {
+                            slideOutOfContainer(
+                                AnimatedContentTransitionScope.SlideDirection.Right ,
+                                animationSpec = tween(400)
+                            )
+                        }) {
+                            PenjualanMobilScreen(navController)
                         }
                         composable(route = Screen.DetailStockMotor.route,   arguments = listOf(
                             navArgument(Constants.KENDARAAN_ID) {
@@ -103,10 +127,29 @@ class MainActivity : ComponentActivity() {
                         }) {
                             DetailStockKendaraan(navController,it.arguments?.getString(Constants.KENDARAAN_ID)!!)
                         }
+                        composable(route = Screen.DetailStockMobil.route,   arguments = listOf(
+                            navArgument(Constants.KENDARAAN_ID) {
+                                type = NavType.StringType
+                            }),  enterTransition = {
+                            slideIntoContainer(
+                                AnimatedContentTransitionScope.SlideDirection.Left,
+                                animationSpec = tween(400)
+                            )
+                        },  exitTransition = {
+                            slideOutOfContainer(
+                                AnimatedContentTransitionScope.SlideDirection.Right ,
+                                animationSpec = tween(400)
+                            )
+                        }) {
+                            DetailStockMobil(navController,it.arguments?.getString(Constants.KENDARAAN_ID)!!)
+                        }
                         composable(route = Screen.AddStockMotor.route) {
                             AddStockScreen(navController){
 
                             }
+                        }
+                        composable(route = Screen.AddStockMobil.route) {
+                            AddStockMobil(navController)
                         }
                     }
                 }

@@ -1,36 +1,24 @@
 package com.example.inosoft_showroom.presentation.main
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.R
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalDrawerSheet
-import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.inosoft_showroom.presentation.component.Appbar
-import com.example.inosoft_showroom.presentation.component.DrawerContent
 import com.example.inosoft_showroom.presentation.component.SpaceRegularCard
 import com.example.inosoft_showroom.presentation.component.SpaceWideCard
 import com.example.inosoft_showroom.presentation.util.Screen
@@ -76,31 +64,44 @@ fun MainScreen(navController: NavController   ){
                 Row {
                     SpaceRegularCard(
                         modifier = Modifier.weight(1f, fill = true),
-                        title = "Stock",
-                        image = com.example.inosoft_showroom.R.drawable.notes_img,
+                        title = "Stock Motor",
+                        image = com.example.inosoft_showroom.R.drawable.ic_motor,
                         backgroundColor = Blue
                     ){
-                        navController.navigate(Screen.StockKendaraanScreen.route)
+                        navController.navigate(Screen.StockMotorScreen.route)
                     }
                     SpaceRegularCard(
                         modifier = Modifier.weight(1f, fill = true),
-                        title = "Penjualan",
-                        image = com.example.inosoft_showroom.R.drawable.notes_img,
+                        title = "Stock Mobil",
+                        image = com.example.inosoft_showroom.R.drawable.ic_mobil,
                         backgroundColor = Red
                     ){
                         navController.navigate(
-                            Screen.PenjualanKendaraanScreen.route
+                            Screen.StockMobilScreen.route
                         )
                     }
                 }
             }
             item {
                 SpaceWideCard(
-                    title = "Laporan Penjualan",
+                    title = "Laporan Penjualan Motor",
                     image = com.example.inosoft_showroom.R.drawable.notes_img,
                     backgroundColor = Purple
                 ){
-                    navController.navigate(Screen.PenjualanKendaraanScreen.route)
+                    navController.navigate(
+                        Screen.PenjualanMotorScreen.route
+                    )
+                }
+            }
+            item {
+                SpaceWideCard(
+                    title = "Laporan Penjualan Mobil",
+                    image = com.example.inosoft_showroom.R.drawable.notes_img,
+                    backgroundColor = Color.Green
+                ){
+                    navController.navigate(
+                        Screen.PenjualanMobilScreen.route
+                    )
                 }
             }
             item { Spacer(Modifier.height(60.dp)) }

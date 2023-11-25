@@ -1,6 +1,5 @@
 package com.example.inosoft_showroom.presentation.component
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -9,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -24,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
 import com.example.inosoft_showroom.presentation.util.Screen
 
 
@@ -36,7 +33,7 @@ fun DrawerContent(
         Spacer(modifier = Modifier.height(20.dp))
         DrawerHead()
         DividerItem()
-        DrawerItem(text = "Stok Kendaraan", selected = false, onChatClicked = {onDestinationClicked(Screen.StockKendaraanScreen.route) }, iconImage =  Icons.Filled.Add)
+        DrawerItem(text = "Stok Kendaraan", selected = false, onChatClicked = {onDestinationClicked(Screen.StockMotorScreen.route) }, iconImage =  Icons.Filled.Add)
         DrawerItem(text = "Penjualan Kendaraan", selected = false, onChatClicked = { }, iconImage =  Icons.Filled.Refresh)
         DrawerItem(text = "Laporan Penjualan per Kendaraan", selected = false, onChatClicked = { }, iconImage =  Icons.Filled.Refresh)
 

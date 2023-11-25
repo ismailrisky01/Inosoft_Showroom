@@ -23,6 +23,7 @@ data class Mobil(
     val mesin: String,
     val kapasitasPenumpang: Int,
     val tipe: String,
+    val isSold:Boolean=false,
     @PrimaryKey val id: Int? = null
 ) : Kendaraan(tahunKeluaran, warna, harga,nama)
 
@@ -36,6 +37,7 @@ data class Motor(
     val mesin: String,
     val tipeSuspensi: String,
     val tipeTransmisi: String,
+    val isSold:Boolean=false,
     @PrimaryKey val id: Int? = null
 ) : Kendaraan(tahunKeluaran, warna, harga,nama)
 
